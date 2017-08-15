@@ -14,4 +14,5 @@ gen = Genealogy(
 
 inspector.plotAllDistributions(gen)
 # inspector.plotTargetDistribution(gen,0)
+
 inspector.show()
