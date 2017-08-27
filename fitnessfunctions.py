@@ -8,9 +8,17 @@ def adjust(traits,traits_values,identity):
 
 def PROD(ts,traits_values):
     traits = adjust(ts[:],traits_values,1) # 1 is mult id
-    print(traits,np.prod(traits))
+    # print(traits,np.prod(traits))
     return np.prod(traits)
 
 def SUM(ts,traits_values):
     traits = adjust(ts[:],traits_values,0) # 0 is add id
     return sum(traits)
+
+def BINRULES(rules):
+    def RULES(ts, traits_values):
+        res = rules[:]
+        for t in ts:
+            res = res[t]
+        return res
+    return RULES
