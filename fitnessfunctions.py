@@ -6,15 +6,6 @@ def adjust(traits,traits_values,identity):
         else: traits[i] = identity
     return traits
 
-def PROD(ts,traits_values):
-    traits = adjust(ts[:],traits_values,1) # 1 is mult id
-    # print(traits,np.prod(traits))
-    return np.prod(traits)
-
-def SUM(ts,traits_values):
-    traits = adjust(ts[:],traits_values,0) # 0 is add id
-    return sum(traits)
-
 def BINRULES(rules):
     def RULES(ts, traits_values):
         res = rules[:]
@@ -22,3 +13,10 @@ def BINRULES(rules):
             res = res[t]
         return res
     return RULES
+
+# all functions stores with keys
+functions = {
+    'PROD': lambda ts, traits_values: np.prod(adjust(ts[:],traits_values,1)), # 1 is mult id
+    'SUM': lambda ts, traits_values: sum(adjust(ts[:],traits_values,0)), # 0 is add id
+    'BINRULES': BINRULES
+}

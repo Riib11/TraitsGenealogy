@@ -1,6 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+def plot(gen,title="All Trait Combinations",target=None):
+    if(target): plotTargetDistribution(gen,0)
+    else: plotAllDistributions(gen)
+    plt.title(title)
+    show()
+
 def plotAllDistributions(gen):
     dist_histories = [[] for i in range(gen.traits_expansion)]
     for time_step in gen.distributions:
@@ -12,7 +18,6 @@ def plotAllDistributions(gen):
             np.arange(0,gen.length),dist_histories[i][1:],
             label=str( ind_to_bin(i,len(gen.traits)) ) + " : " + str(gen.fitnesses[i]))
     plt.legend()
-    plt.title("All Trait Combinations")
 
 def plotTargetDistribution(gen,ind):
     dist_histories = [[] for i in range(gen.traits_expansion)]
